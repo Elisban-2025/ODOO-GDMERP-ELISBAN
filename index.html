@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GDMERP | Balanced Scorecard</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <!-- MÓDULO 1: INICIO DE SESIÓN -->
+  <div id="loginView" class="login-wrap">
+    <div class="login-card">
+      <div class="brand brand-login">
+        <span class="brand-mark">G</span>
+        <div><strong>GDMERP</strong><small>Agro Peruvian Foods</small></div>
+      </div>
+      <h1>Acceso al Sistema</h1>
+      <p class="muted">Gestión Estratégica: Módulos CRM y Compras.</p>
+      <form id="loginForm">
+        <label>Usuario<input id="loginUser" autocomplete="username" value="admin@gdmerp.com" required></label>
+        <label>Contraseña<input id="loginPass" type="password" autocomplete="current-password" value="BSC2026!" required></label>
+        <p id="loginError" class="error-text hidden">Credenciales incorrectas.</p>
+        <button class="btn primary full" type="submit">Ingresar al ERP <span>→</span></button>
+      </form>
+      <div class="demo-note">
+        <strong>Accesos configurados:</strong><br>
+        Admin: admin@gdmerp.com<br>
+        Comercial: comercial@gdmerp.com<br>
+        Compras: compras@gdmerp.com<br>
+        Pass universal: BSC2026!
+      </div>
+    </div>
+    <div class="login-art">
+      <div class="art-orbit orbit1"></div>
+      <div class="art-orbit orbit2"></div>
+      <div class="art-content">
+        <span class="eyebrow">INTELIGENCIA DE NEGOCIOS</span>
+        <h2>Integración total<br>de CRM y Compras.</h2>
+        <p>Mide la eficiencia del abastecimiento agroindustrial y el cierre de ventas B2B en tiempo real.</p>
+        <div class="art-stats">
+          <div><b>100%</b><small>Trazabilidad</small></div>
+          <div><b>360°</b><small>Visión Operativa</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- APLICACIÓN PRINCIPAL -->
+  <div id="appView" class="app-shell hidden">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <span class="brand-mark">G</span>
+        <div><strong>GDMERP</strong><small>Balanced Scorecard</small></div>
+        <button id="sidebarClose" class="icon-btn mobile-only" aria-label="Cerrar menú">×</button>
+      </div>
+      <div class="org-switch">
+        <span class="org-icon">A</span>
+        <div><strong>Agro Peruvian Foods</strong><small>División Agroindustrial</small></div>
+        <span class="chevron">⌄</span>
+      </div>
+      
+      <nav id="mainNav" aria-label="Navegación principal">
+        <div class="nav-label">CONTROL ESTRATÉGICO</div>
+        <button class="nav-item active" data-page="dashboard"><span class="nav-icon">▦</span>Dashboard ejecutivo</button>
+        <button class="nav-item" data-page="mapa"><span class="nav-icon">⌘</span>Mapa estratégico</button>
+        <button class="nav-item" data-page="objetivos"><span class="nav-icon">◎</span>Objetivos estratégicos</button>
+        <button class="nav-item" data-page="kpis"><span class="nav-icon">▥</span>Indicadores (KPI)</button>
+        <button class="nav-item" data-page="mediciones"><span class="nav-icon">↗</span>Registro de resultados</button>
+        <button class="nav-item" data-page="iniciativas"><span class="nav-icon">◈</span>Iniciativas de mejora</button>
+        
+        <div class="nav-label">INTELIGENCIA Y REPORTES</div>
+        <button class="nav-item" data-page="reportes"><span class="nav-icon">▤</span>Generación de reportes</button>
+        <button class="nav-item" data-page="administracion"><span class="nav-icon">⚙</span>Administración</button>
+      </nav>
+      
+      <div class="sidebar-bottom">
+        <div class="sidebar-user">
+          <div class="avatar" id="sideAvatar">EH</div>
+          <div class="user-meta">
+            <strong id="sideUserName">Elisban Huaylla</strong>
+            <small id="sideUserRole">Administrador</small>
+          </div>
+          <button id="logoutBtn" class="logout" title="Cerrar sesión">↪</button>
+        </div>
+      </div>
+    </aside>
+    
+    <div class="main-column">
+      <header class="topbar">
+        <button id="menuToggle" class="icon-btn mobile-only" aria-label="Abrir menú">☰</button>
+        <div class="breadcrumb">
+          <span>Agro Peruvian Foods</span><span class="crumb-sep">/</span><strong id="breadcrumbPage">Dashboard ejecutivo</strong>
+        </div>
+        <div class="top-actions">
+          <label class="period-select">Período 
+            <select id="globalPeriod"><option>2026</option><option>2025</option></select>
+          </label>
+          <button id="notificationsBtn" class="icon-btn notification-btn" title="Notificaciones">♧<i id="notificationDot"></i></button>
+          <div class="top-profile">
+            <div class="avatar small-avatar" id="topAvatar">EH</div>
+            <div>
+              <strong id="topUserName">Elisban Huaylla</strong>
+              <small id="topUserRole">Administrador</small>
+            </div>
+          </div>
+        </div>
+      </header>
+      
+      <main id="pageContent" tabindex="-1"></main>
+      
+      <footer class="app-footer">
+        <span>GDMERP v2.0 · Módulo Balanced Scorecard</span>
+        <span>Propiedad de Agro Peruvian Foods</span>
+      </footer>
+    </div>
+  </div>
+
+  <!-- SISTEMA MODAL GLOBAL -->
+  <div id="modalLayer" class="modal-layer hidden" role="presentation">
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <header class="modal-header">
+        <div>
+          <span class="eyebrow" id="modalEyebrow">GESTIÓN</span>
+          <h2 id="modalTitle">Registro</h2>
+        </div>
+        <button id="modalClose" class="icon-btn" aria-label="Cerrar">×</button>
+      </header>
+      <div id="modalBody" class="modal-body"></div>
+      <footer id="modalFooter" class="modal-footer"></footer>
+    </section>
+  </div>
+  
+  <div id="toastRegion" class="toast-region" aria-live="polite"></div>
+</body>
+</html>
